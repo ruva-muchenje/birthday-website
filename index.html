@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,33 +10,41 @@
 
 <style>
 
-/* PAGE LAYOUT */
-
 body{
 margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 background:radial-gradient(circle at top,#b11212,#7b0000 70%);
 font-family:'Playfair Display',serif;
 color:white;
 text-align:center;
-overflow-x:hidden;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:flex-start;
-padding-top:80px;
+overflow:hidden;
+}
+
+body::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 30%,rgba(255,255,255,0.15),transparent 40%),
+radial-gradient(circle at 80% 70%,rgba(255,255,255,0.1),transparent 40%);
+z-index:0;
 }
 
 .page{
 display:none;
+position:relative;
+z-index:2;
 max-width:900px;
-width:90%;
+padding:40px;
 }
 
 .active{
 display:block;
 }
-
-/* TEXT */
 
 .script{
 font-family:'Great Vibes',cursive;
@@ -45,7 +52,7 @@ font-size:60px;
 }
 
 h1{
-font-size:60px;
+font-size:70px;
 margin:10px 0;
 text-shadow:0 0 20px rgba(255,200,200,0.6);
 }
@@ -53,8 +60,6 @@ text-shadow:0 0 20px rgba(255,200,200,0.6);
 p{
 font-size:20px;
 }
-
-/* BUTTONS */
 
 button{
 padding:14px 40px;
@@ -74,24 +79,17 @@ background:#a10f1a;
 box-shadow:0 0 20px rgba(255,200,200,0.6);
 }
 
-.back-btn{
-background:white;
-color:#7b0000;
-}
-
-/* GIFT GRID */
-
 .gift-grid{
 display:flex;
 justify-content:center;
-gap:40px;
+gap:60px;
 margin-top:40px;
-flex-wrap:nowrap;
+flex-wrap:wrap;
 }
 
 .gift-card{
-width:130px;
-height:130px;
+width:160px;
+height:160px;
 background:white;
 border-radius:25px;
 display:flex;
@@ -102,7 +100,7 @@ transition:0.3s;
 }
 
 .gift-card img{
-width:80px;
+width:100px;
 }
 
 .gift-card:hover{
@@ -110,20 +108,71 @@ transform:scale(1.1);
 box-shadow:0 0 30px rgba(255,255,255,0.8);
 }
 
-/* VIDEO */
+.jar-layout{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:60px;
+flex-wrap:wrap;
+margin-top:40px;
+}
+
+.reasons{
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+.reason{
+background:white;
+color:#7b0000;
+padding:14px 26px;
+border-radius:30px;
+font-size:18px;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.jar-img{
+width:200px;
+}
+
+.message-card{
+background:#9e1c1c;
+padding:40px;
+border-radius:30px;
+box-shadow:
+0 0 30px rgba(255,255,255,0.6),
+0 0 60px rgba(255,255,255,0.3);
+max-width:650px;
+margin:auto;
+line-height:1.8;
+}
+
+#typedText{
+white-space:pre-wrap;
+font-size:18px;
+}
+
+.back-btn{
+background:white;
+color:#7b0000;
+padding:10px 20px;
+border-radius:20px;
+}
 
 .song-title{
-font-size:clamp(20px,4vw,36px);
+font-size:clamp(22px,4vw,40px);
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis;
-margin-bottom:20px;
+max-width:90%;
+margin:auto;
 }
 
 .video-container{
 width:90%;
-max-width:650px;
-margin:auto;
+max-width:800px;
+margin:25px auto;
 border-radius:20px;
 overflow:hidden;
 box-shadow:0 0 25px rgba(255,255,255,0.4);
@@ -131,29 +180,20 @@ box-shadow:0 0 25px rgba(255,255,255,0.4);
 
 video{
 width:100%;
+height:auto;
 display:block;
+border-radius:20px;
 }
 
-/* LETTER */
-
-.message-card{
-background:#9e1c1c;
-padding:35px;
-border-radius:30px;
-box-shadow:0 0 30px rgba(255,255,255,0.5);
-max-width:600px;
-margin:auto;
-line-height:1.8;
-}
-
-/* HEARTS */
+/* floating hearts */
 
 .heart{
 position:fixed;
 bottom:-20px;
-font-size:40px;
+font-size:45px;
 animation:floatUp linear infinite;
 opacity:0.7;
+z-index:1;
 }
 
 @keyframes floatUp{
@@ -163,31 +203,31 @@ opacity:0.7;
 
 }
 
-/* MOBILE */
+/* kidnapping reveal */
 
-@media(max-width:600px){
-
-body{
-padding-top:60px;
+.kidnap-box{
+background:#8b0000;
+padding:50px;
+border-radius:30px;
+box-shadow:0 0 40px rgba(255,255,255,0.6);
+animation:pop 1s ease;
 }
 
-h1{
-font-size:42px;
+@keyframes pop{
+
+0%{transform:scale(0.6);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+
 }
 
-.gift-grid{
-gap:20px;
+.kidnap-title{
+font-size:55px;
+font-family:'Great Vibes',cursive;
 }
 
-.gift-card{
-width:100px;
-height:100px;
-}
-
-.gift-card img{
-width:60px;
-}
-
+.details{
+font-size:28px;
+margin-top:20px;
 }
 
 </style>
@@ -209,8 +249,7 @@ width:60px;
 
 </div>
 
-
-<!-- PAGE NO -->
+<!-- NO PAGE -->
 
 <div id="pageNO" class="page">
 
@@ -222,13 +261,11 @@ width:60px;
 
 </div>
 
-
 <!-- PAGE 2 GIFTS -->
 
 <div id="page2" class="page">
 
 <h1>THESE ARE FOR YOU</h1>
-
 <p>Click to open</p>
 
 <div class="gift-grid">
@@ -247,41 +284,45 @@ width:60px;
 
 </div>
 
-<button class="back-btn" onclick="showPage('page1')">← Back</button>
-
 </div>
 
-
-<!-- PAGE 3 JAR -->
+<!-- JAR -->
 
 <div id="page3" class="page">
 
 <h1>Jar of Love</h1>
-
 <p>4 reasons why I love you</p>
 
-<p>You feel like home ❤️</p>
-<p>You show up consistently ❤️</p>
-<p>You love me gently ❤️</p>
-<p>You see me fully ❤️</p>
+<div class="jar-layout">
+
+<div class="reasons">
+<div class="reason">You feel like home</div>
+<div class="reason">You show up consistently</div>
+</div>
+
+<img src="jar.jpg" class="jar-img">
+
+<div class="reasons">
+<div class="reason">You love me gently</div>
+<div class="reason">You see me fully</div>
+</div>
+
+</div>
 
 <button class="back-btn" onclick="showPage('page2')">← Back</button>
 
 </div>
 
-
-<!-- PAGE 4 VIDEO -->
+<!-- VIDEO PAGE -->
 
 <div id="page4" class="page">
 
-<h1 class="song-title">This Song Reminds Me Of You 🎵</h1>
+<h1 class="song-title">This Song Reminds me of you 🎵</h1>
 
 <div class="video-container">
 
-<video id="songVideo" controls playsinline>
-
+<video id="songVideo" controls playsinline preload="metadata">
 <source src="video.mp4" type="video/mp4">
-
 </video>
 
 </div>
@@ -290,42 +331,50 @@ width:60px;
 
 </div>
 
-
-<!-- PAGE 5 LETTER -->
+<!-- LETTER -->
 
 <div id="page5" class="page">
 
-<h1>BIRTHDAY MESSAGE</h1>
+<h2>BIRTHDAY MESSAGE</h2>
 
 <div class="message-card">
 
-<p>Happy Birthday wangu ❤️🥳</p>
+<h3>Happy Birthday wangu ❤️🥳</h3>
 
-<p>
-To the funniest, cutest, most smiley guy I know: HAPPY BIRTHDAY WANGU ❤️🥳
-</p>
+<div id="typedText"></div>
 
-<p>
-Thank you for being the source of so much of my happiness and laughter.
-</p>
-
-<p>
-I hope your birthday is as amazing and bright as you are.
-</p>
-
-<p>I LOVE YOU ❤️</p>
+<h3>I LOVE YOU</h3>
 
 </div>
 
-<button class="back-btn" onclick="showPage('page2')">← Back</button>
+</div>
+
+<!-- FINAL PAGE -->
+
+<div id="page6" class="page">
+
+<div class="kidnap-box">
+
+<div class="kidnap-title">One More Thing...</div>
+
+<h1>You are being kidnapped 😈</h1>
+
+<p class="details">
+📅 March 3 <br>
+⏰ 19:00
+</p>
+
+<button onclick="window.open('https://maps.app.goo.gl/YX7XqPXVXcofb6Tr9')">
+Open Location 📍
+</button>
 
 </div>
 
+</div>
 
 <audio id="music" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
-
 
 <script>
 
@@ -338,6 +387,7 @@ heart.classList.add("heart");
 heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*25+45)+"px";
 heart.style.animationDuration=(Math.random()*6+6)+"s";
 
 document.body.appendChild(heart);
@@ -348,50 +398,129 @@ setTimeout(()=>heart.remove(),12000);
 
 setInterval(createHeart,600);
 
+/* runaway NO */
+
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+const x=Math.random()*200-100;
+const y=Math.random()*100-50;
+noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+noBtn.addEventListener("click",()=>{
+showPage("pageNO");
+});
+
+/* YES */
+
+function startExperience(){
+
+for(let i=0;i<30;i++){
+
+const heart=document.createElement("div");
+heart.innerHTML="❤️";
+
+heart.style.position="fixed";
+heart.style.left="50%";
+heart.style.top="50%";
+heart.style.fontSize="40px";
+
+const x=(Math.random()-0.5)*900;
+const y=(Math.random()-0.5)*900;
+
+heart.style.transition="1s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.style.transform=`translate(${x}px,${y}px)`;
+heart.style.opacity="0";
+},50);
+
+setTimeout(()=>heart.remove(),1000);
+
+}
+
+const music=document.getElementById("music");
+music.volume=0.35;
+music.play();
+
+setTimeout(()=>{
+showPage("page2");
+},900);
+
+}
 
 /* PAGE SWITCH */
 
 function showPage(id){
 
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-
 document.getElementById(id).classList.add("active");
 
-}
-
-
-/* START */
-
-function startExperience(){
-
-document.getElementById("music").volume=0.35;
-
-document.getElementById("music").play();
-
-showPage("page2");
+if(id==="page5") startTyping();
 
 }
 
-
-/* VIDEO */
+/* VIDEO OPEN */
 
 function openVideo(){
 
-document.getElementById("music").pause();
+const music=document.getElementById("music");
+music.pause();
 
 showPage("page4");
 
 }
 
+/* VIDEO CLOSE */
+
 function closeVideo(){
 
 const video=document.getElementById("songVideo");
+const music=document.getElementById("music");
 
 video.pause();
+video.currentTime=0;
 
-document.getElementById("music").play();
+music.play();
 
 showPage("page2");
+
+}
+
+/* LETTER TYPING */
+
+const message=`To the funniest, cutest, most smiley guy I know: HAPPY BIRTHDAY WANGU ❤️🥳
+
+Thank you for being the source of so much of my happiness and laughter. I genuinely don't know anyone else who can light up a room the way you do. I love your energy and how you can always make me smile, even on my worst days. Basically, I love you for exactly who you are.
+
+I hope your birthday is as amazing and bright as you are. And I’m not just wishing you a happy birthday, I'm wishing us a happy future. Here’s to many more birthdays, many more laughs, and many more smiles shared together. I love you more than you know.`;
+
+function startTyping(){
+
+let i=0;
+const el=document.getElementById("typedText");
+el.innerHTML="";
+
+function type(){
+
+if(i<message.length){
+
+el.innerHTML+=message.charAt(i);
+i++;
+setTimeout(type,22);
+
+}else{
+
+setTimeout(()=>showPage("page6"),5000);
+
+}
+
+}
+
+type();
 
 }
 
