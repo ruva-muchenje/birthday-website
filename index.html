@@ -157,25 +157,27 @@ color:#7b0000;
 padding:10px 20px;
 border-radius:20px;
 }
-
+.song-title{
+    font-size: clamp(22px,4vw,40px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    margin: 0 auto ;
+}
 .video-container{
-position: relative;
-width:100%;
+width:90%;
 max-width:800px;
-margin:auto;
-padding-top: 56.25%;
+margin:25px auto;
 border-radius:20px;
 overflow:hidden;
 box-shadow:0 0 25px rgba(255,255,255,0.4);
+background: black;
 }
 
 video{
-position: absolute;
-top:0;
-left:0;
 width:100%;
 height:auto;
-object-fit: contain;
 display:block;
 border-radius:20px;
 }
@@ -314,7 +316,7 @@ margin-top:20px;
 
 <div id="page4" class="page">
 
-<h1>This Song Reminds me of you 🎵</h1>
+<h1 class="song-title"> This Song Reminds me of you 🎵</h1>
 
 <div class="video-container">
 <video id="songVideo" controls playsinline>
