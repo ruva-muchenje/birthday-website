@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -17,13 +16,12 @@ margin:0;
 min-height:100vh;
 display:flex;
 justify-content:center;
-align-items:flex-start;
+align-items:center;
 background:radial-gradient(circle at top,#b11212,#7b0000 70%);
 font-family:'Playfair Display',serif;
 color:white;
 text-align:center;
 overflow-x:hidden;
-overflow-y:auto;
 }
 
 body::before{
@@ -42,8 +40,8 @@ display:none;
 position:relative;
 z-index:2;
 max-width:900px;
-padding:40px 20px;
-margin:auto;
+padding:40px;
+width:100%;
 }
 
 .active{
@@ -56,7 +54,7 @@ font-size:60px;
 }
 
 h1{
-font-size:clamp(40px,8vw,70px);
+font-size:60px;
 margin:10px 0;
 text-shadow:0 0 20px rgba(255,200,200,0.6);
 }
@@ -164,8 +162,10 @@ padding:10px 20px;
 border-radius:20px;
 }
 
+/* VIDEO */
+
 .song-title{
-font-size:clamp(22px,4vw,40px);
+font-size:clamp(20px,4vw,40px);
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis;
@@ -185,11 +185,12 @@ background:black;
 
 video{
 width:100%;
+height:auto;
 display:block;
 border-radius:20px;
 }
 
-/* floating hearts */
+/* FLOATING HEARTS */
 
 .heart{
 position:fixed;
@@ -205,7 +206,7 @@ z-index:1;
 100%{transform:translateY(-120vh);opacity:0;}
 }
 
-/* kidnapping */
+/* KIDNAP PAGE */
 
 .kidnap-box{
 background:#8b0000;
@@ -230,8 +231,50 @@ font-size:28px;
 margin-top:20px;
 }
 
-</style>
+/* MOBILE FIX */
 
+@media (max-width:600px){
+
+body{
+align-items:flex-start;
+padding:20px;
+}
+
+.page{
+padding:20px;
+}
+
+h1{
+font-size:38px;
+}
+
+.script{
+font-size:36px;
+}
+
+p{
+font-size:16px;
+}
+
+.message-card{
+padding:25px;
+}
+
+#typedText{
+font-size:16px;
+}
+
+.jar-layout{
+gap:30px;
+}
+
+.reason{
+font-size:16px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
@@ -317,7 +360,7 @@ margin-top:20px;
 
 <div id="page4" class="page">
 
-<h1 class="song-title">This Song Reminds me of you 🎵</h1>
+<h1 class="song-title">This Song Reminds Me Of You 🎵</h1>
 
 <div class="video-container">
 
@@ -349,7 +392,7 @@ margin-top:20px;
 
 </div>
 
-<!-- FINAL -->
+<!-- FINAL PAGE -->
 
 <div id="page6" class="page">
 
@@ -378,16 +421,16 @@ Open Location 📍
 
 <script>
 
-/* floating hearts */
+/* HEARTS */
 
 function createHeart(){
 
 const heart=document.createElement("div");
-heart.classList.add("heart");
+heart.className="heart";
 heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*25+45)+"px";
+heart.style.fontSize=(Math.random()*25+40)+"px";
 heart.style.animationDuration=(Math.random()*6+6)+"s";
 
 document.body.appendChild(heart);
@@ -396,108 +439,113 @@ setTimeout(()=>heart.remove(),12000);
 
 }
 
-setInterval(createHeart,600)
+setInterval(createHeart,600);
 
-/* runaway NO */
 
-const noBtn=document.getElementById("noBtn")
+/* NO BUTTON RUN */
+
+const noBtn=document.getElementById("noBtn");
 
 noBtn.addEventListener("mouseover",()=>{
-const x=Math.random()*200-100
-const y=Math.random()*100-50
-noBtn.style.transform=`translate(${x}px,${y}px)`
-})
 
-noBtn.addEventListener("click",()=>{
-showPage("pageNO")
-})
+const x=Math.random()*200-100;
+const y=Math.random()*100-50;
 
-/* start experience */
+noBtn.style.transform=`translate(${x}px,${y}px)`;
+
+});
+
+noBtn.addEventListener("click",()=>showPage("pageNO"));
+
+
+/* START */
 
 function startExperience(){
 
-const music=document.getElementById("music")
+const music=document.getElementById("music");
 
-music.volume=0.35
-music.play()
+music.volume=0.35;
+music.play();
 
-showPage("page2")
+showPage("page2");
 
 }
 
-/* page switch */
+
+/* PAGE SWITCH */
 
 function showPage(id){
 
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
-document.getElementById(id).classList.add("active")
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 
-if(id==="page5") startTyping()
+document.getElementById(id).classList.add("active");
+
+if(id==="page5") startTyping();
 
 }
 
-/* video */
+
+/* VIDEO */
 
 function openVideo(){
 
-const music=document.getElementById("music")
-const video=document.getElementById("songVideo")
+const music=document.getElementById("music");
+music.pause();
 
-music.pause()
-
-showPage("page4")
-
-video.play()
+showPage("page4");
 
 }
 
 function closeVideo(){
 
-const music=document.getElementById("music"
-)
-const video=document.getElementById("songVideo")
+const music=document.getElementById("music");
+const video=document.getElementById("songVideo");
 
-video.pause()
-video.currentTime=0
+video.pause();
+video.currentTime=0;
 
-music.play()
+music.play();
 
-showPage("page2")
+showPage("page2");
 
 }
 
-/* typing */
+
+/* TYPING */
 
 const message=`To the funniest, cutest, most smiley guy I know: HAPPY BIRTHDAY WANGU ❤️🥳
 
-Thank you for being the source of so much of my happiness and laughter. I genuinely don't know anyone else who can light up a room the way you do.
+Thank you for being the source of so much of my happiness and laughter. I genuinely don't know anyone else who can light up a room the way you do. I love your energy and how you can always make me smile, even on my worst days.
 
-I hope your birthday is as amazing and bright as you are. Here's to many more birthdays, many more laughs, and many more smiles together. I love you more than you know.`
+I hope your birthday is as amazing and bright as you are. Here's to many more birthdays, many more laughs, and many more smiles together.
+
+I love you more than you know.`;
 
 function startTyping(){
 
-let i=0
-const el=document.getElementById("typedText")
-el.innerHTML=""
+let i=0;
+const el=document.getElementById("typedText");
+
+el.innerHTML="";
 
 function type(){
 
 if(i<message.length){
 
-el.innerHTML+=message.charAt(i)
-i++
+el.innerHTML+=message.charAt(i);
+i++;
 
-setTimeout(type,22)
+setTimeout(type,20);
 
 }else{
 
-setTimeout(()=>showPage("page6"),5000)
+setTimeout(()=>showPage("page6"),5000);
 
 }
 
 }
 
-type()
+type();
 
 }
 
