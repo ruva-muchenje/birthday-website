@@ -10,9 +10,11 @@
 
 <style>
 
+/* BODY */
+
 body{
 margin:0;
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -20,12 +22,15 @@ background:radial-gradient(circle at top,#b11212,#7b0000 70%);
 font-family:'Playfair Display',serif;
 color:white;
 text-align:center;
-overflow:hidden;
+overflow-x:hidden;
+padding:20px;
 }
+
+/* background glow */
 
 body::before{
 content:"";
-position:absolute;
+position:fixed;
 width:100%;
 height:100%;
 background:
@@ -34,32 +39,39 @@ radial-gradient(circle at 80% 70%,rgba(255,255,255,0.1),transparent 40%);
 z-index:0;
 }
 
+/* PAGES */
+
 .page{
 display:none;
 position:relative;
 z-index:2;
-max-width:900px;
-padding:40px;
+max-width:1000px;
+width:100%;
+padding:20px;
 }
 
 .active{
 display:block;
 }
 
+/* TEXT */
+
 .script{
 font-family:'Great Vibes',cursive;
-font-size:60px;
+font-size:clamp(40px,5vw,60px);
 }
 
 h1{
-font-size:70px;
+font-size:clamp(40px,6vw,70px);
 margin:10px 0;
 text-shadow:0 0 20px rgba(255,200,200,0.6);
 }
 
 p{
-font-size:20px;
+font-size:clamp(16px,2.5vw,20px);
 }
+
+/* BUTTONS */
 
 button{
 padding:14px 40px;
@@ -79,17 +91,26 @@ background:#a10f1a;
 box-shadow:0 0 20px rgba(255,200,200,0.6);
 }
 
+.back-btn{
+background:white;
+color:#7b0000;
+padding:10px 20px;
+}
+
+/* GIFT GRID */
+
 .gift-grid{
 display:flex;
 justify-content:center;
-gap:60px;
+align-items:center;
+gap:40px;
 margin-top:40px;
-flex-wrap:wrap;
+flex-wrap:nowrap;
 }
 
 .gift-card{
-width:160px;
-height:160px;
+width:140px;
+height:140px;
 background:white;
 border-radius:25px;
 display:flex;
@@ -100,7 +121,7 @@ transition:0.3s;
 }
 
 .gift-card img{
-width:100px;
+width:85px;
 }
 
 .gift-card:hover{
@@ -108,44 +129,48 @@ transform:scale(1.1);
 box-shadow:0 0 30px rgba(255,255,255,0.8);
 }
 
+/* JAR PAGE */
+
 .jar-layout{
 display:flex;
 align-items:center;
 justify-content:center;
-gap:60px;
-flex-wrap:wrap;
+gap:50px;
 margin-top:40px;
+flex-wrap:nowrap;
 }
 
 .reasons{
 display:flex;
 flex-direction:column;
-gap:25px;
+gap:20px;
 }
 
 .reason{
 background:white;
 color:#7b0000;
-padding:14px 26px;
+padding:12px 20px;
 border-radius:30px;
-font-size:18px;
+font-size:16px;
 box-shadow:0 10px 20px rgba(0,0,0,0.3);
 }
 
 .jar-img{
-width:200px;
+width:160px;
 }
+
+/* LETTER */
 
 .message-card{
 background:#9e1c1c;
-padding:40px;
+padding:30px;
 border-radius:30px;
 box-shadow:
 0 0 30px rgba(255,255,255,0.6),
 0 0 60px rgba(255,255,255,0.3);
 max-width:650px;
 margin:auto;
-line-height:1.8;
+line-height:1.7;
 }
 
 #typedText{
@@ -153,25 +178,19 @@ white-space:pre-wrap;
 font-size:18px;
 }
 
-.back-btn{
-background:white;
-color:#7b0000;
-padding:10px 20px;
-border-radius:20px;
-}
+/* VIDEO */
 
 .song-title{
 font-size:clamp(22px,4vw,40px);
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis;
-max-width:90%;
 margin:auto;
 }
 
 .video-container{
 width:90%;
-max-width:800px;
+max-width:700px;
 margin:25px auto;
 border-radius:20px;
 overflow:hidden;
@@ -180,17 +199,15 @@ box-shadow:0 0 25px rgba(255,255,255,0.4);
 
 video{
 width:100%;
-height:auto;
 display:block;
-border-radius:20px;
 }
 
-/* floating hearts */
+/* FLOATING HEARTS */
 
 .heart{
 position:fixed;
 bottom:-20px;
-font-size:45px;
+font-size:40px;
 animation:floatUp linear infinite;
 opacity:0.7;
 z-index:1;
@@ -203,11 +220,11 @@ z-index:1;
 
 }
 
-/* kidnapping reveal */
+/* FINAL PAGE */
 
 .kidnap-box{
 background:#8b0000;
-padding:50px;
+padding:40px;
 border-radius:30px;
 box-shadow:0 0 40px rgba(255,255,255,0.6);
 animation:pop 1s ease;
@@ -221,13 +238,45 @@ animation:pop 1s ease;
 }
 
 .kidnap-title{
-font-size:55px;
+font-size:50px;
 font-family:'Great Vibes',cursive;
 }
 
 .details{
-font-size:28px;
+font-size:26px;
 margin-top:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+.gift-grid{
+gap:18px;
+}
+
+.gift-card{
+width:95px;
+height:95px;
+}
+
+.gift-card img{
+width:55px;
+}
+
+.jar-layout{
+gap:18px;
+}
+
+.jar-img{
+width:95px;
+}
+
+.reason{
+font-size:13px;
+padding:8px 14px;
+}
+
 }
 
 </style>
@@ -313,7 +362,7 @@ margin-top:20px;
 
 </div>
 
-<!-- VIDEO PAGE -->
+<!-- VIDEO -->
 
 <div id="page4" class="page">
 
@@ -321,7 +370,7 @@ margin-top:20px;
 
 <div class="video-container">
 
-<video id="songVideo" controls playsinline preload="metadata">
+<video id="songVideo" controls playsinline>
 <source src="video.mp4" type="video/mp4">
 </video>
 
@@ -387,7 +436,6 @@ heart.classList.add("heart");
 heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*25+45)+"px";
 heart.style.animationDuration=(Math.random()*6+6)+"s";
 
 document.body.appendChild(heart);
@@ -396,63 +444,9 @@ setTimeout(()=>heart.remove(),12000);
 
 }
 
-setInterval(createHeart,600);
+setInterval(createHeart,700);
 
-/* runaway NO */
-
-const noBtn=document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover",()=>{
-const x=Math.random()*200-100;
-const y=Math.random()*100-50;
-noBtn.style.transform=`translate(${x}px,${y}px)`;
-});
-
-noBtn.addEventListener("click",()=>{
-showPage("pageNO");
-});
-
-/* YES */
-
-function startExperience(){
-
-for(let i=0;i<30;i++){
-
-const heart=document.createElement("div");
-heart.innerHTML="❤️";
-
-heart.style.position="fixed";
-heart.style.left="50%";
-heart.style.top="50%";
-heart.style.fontSize="40px";
-
-const x=(Math.random()-0.5)*900;
-const y=(Math.random()-0.5)*900;
-
-heart.style.transition="1s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.style.transform=`translate(${x}px,${y}px)`;
-heart.style.opacity="0";
-},50);
-
-setTimeout(()=>heart.remove(),1000);
-
-}
-
-const music=document.getElementById("music");
-music.volume=0.35;
-music.play();
-
-setTimeout(()=>{
-showPage("page2");
-},900);
-
-}
-
-/* PAGE SWITCH */
+/* page switch */
 
 function showPage(id){
 
@@ -463,40 +457,47 @@ if(id==="page5") startTyping();
 
 }
 
-/* VIDEO OPEN */
+/* start */
 
-function openVideo(){
+function startExperience(){
 
 const music=document.getElementById("music");
-music.pause();
-
-showPage("page4");
-
-}
-
-/* VIDEO CLOSE */
-
-function closeVideo(){
-
-const video=document.getElementById("songVideo");
-const music=document.getElementById("music");
-
-video.pause();
-video.currentTime=0;
-
+music.volume=0.35;
 music.play();
 
 showPage("page2");
 
 }
 
-/* LETTER TYPING */
+/* video */
+
+function openVideo(){
+
+document.getElementById("music").pause();
+showPage("page4");
+
+}
+
+function closeVideo(){
+
+const video=document.getElementById("songVideo");
+
+video.pause();
+video.currentTime=0;
+
+document.getElementById("music").play();
+
+showPage("page2");
+
+}
+
+/* typing */
 
 const message=`To the funniest, cutest, most smiley guy I know: HAPPY BIRTHDAY WANGU ❤️🥳
 
-Thank you for being the source of so much of my happiness and laughter. I genuinely don't know anyone else who can light up a room the way you do. I love your energy and how you can always make me smile, even on my worst days. Basically, I love you for exactly who you are.
+Thank you for being the source of so much of my happiness and laughter. I genuinely don't know anyone else who can light up a room the way you do.
 
-I hope your birthday is as amazing and bright as you are. And I’m not just wishing you a happy birthday, I'm wishing us a happy future. Here’s to many more birthdays, many more laughs, and many more smiles shared together. I love you more than you know.`;
+I hope your birthday is as amazing and bright as you are. Here’s to many more birthdays, many more laughs, and many more smiles together.`;
 
 function startTyping(){
 
@@ -510,7 +511,7 @@ if(i<message.length){
 
 el.innerHTML+=message.charAt(i);
 i++;
-setTimeout(type,22);
+setTimeout(type,20);
 
 }else{
 
