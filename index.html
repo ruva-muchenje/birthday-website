@@ -159,17 +159,23 @@ border-radius:20px;
 }
 
 .video-container{
+position: relative;
 width:100%;
-max-width:700px;
+max-width:800px;
 margin:auto;
+padding-top: 56.25%;
 border-radius:20px;
 overflow:hidden;
 box-shadow:0 0 25px rgba(255,255,255,0.4);
 }
 
 video{
+position: absolute;
+top:0;
+left:0;
 width:100%;
 height:auto;
+object-fit: contain;
 display:block;
 border-radius:20px;
 }
@@ -308,10 +314,10 @@ margin-top:20px;
 
 <div id="page4" class="page">
 
-<h1>This Song Is For You 🎵</h1>
+<h1>This Song Reminds me of you 🎵</h1>
 
 <div class="video-container">
-<video id="songVideo" controls>
+<video id="songVideo" controls playsinline>
 <source src="video.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
