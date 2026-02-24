@@ -158,11 +158,20 @@ padding:10px 20px;
 border-radius:20px;
 }
 
-video{
+.video-container{
 width:100%;
 max-width:700px;
+margin:auto;
 border-radius:20px;
-box-shadow:0 0 30px rgba(255,255,255,0.5);
+overflow:hidden;
+box-shadow:0 0 25px rgba(255,255,255,0.4);
+}
+
+video{
+width:100%;
+height:auto;
+display:block;
+border-radius:20px;
 }
 
 /* floating hearts */
@@ -295,17 +304,20 @@ margin-top:20px;
 
 <!-- VIDEO -->
 
+<!-- PAGE 4 SONG -->
+
 <div id="page4" class="page">
 
 <h1>This Song Is For You 🎵</h1>
 
-<video id="videoPlayer" controls>
+<div class="video-container">
+<video id="songVideo" controls>
 <source src="video.mp4" type="video/mp4">
+Your browser does not support the video tag.
 </video>
+</div>
 
-<br>
-
-<button class="back-btn" onclick="closeVideo()">← Back</button>
+<button class="back-btn" onclick="showPage('page2')">← Back</button>
 
 </div>
 
