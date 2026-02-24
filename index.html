@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,20 +14,21 @@
 
 body{
 margin:0;
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
-align-items:center;
+align-items:flex-start;
 background:radial-gradient(circle at top,#b11212,#7b0000 70%);
 font-family:'Playfair Display',serif;
 color:white;
 text-align:center;
-overflow:hidden;
+overflow-x:hidden;
+overflow-y:auto;
 }
 
 body::before{
 content:"";
-position:absolute;
+position:fixed;
 width:100%;
 height:100%;
 background:
@@ -39,7 +42,8 @@ display:none;
 position:relative;
 z-index:2;
 max-width:900px;
-padding:40px;
+padding:40px 20px;
+margin:auto;
 }
 
 .active{
@@ -52,7 +56,7 @@ font-size:60px;
 }
 
 h1{
-font-size:70px;
+font-size:clamp(40px,8vw,70px);
 margin:10px 0;
 text-shadow:0 0 20px rgba(255,200,200,0.6);
 }
@@ -176,11 +180,11 @@ margin:25px auto;
 border-radius:20px;
 overflow:hidden;
 box-shadow:0 0 25px rgba(255,255,255,0.4);
+background:black;
 }
 
 video{
 width:100%;
-height:auto;
 display:block;
 border-radius:20px;
 }
@@ -197,13 +201,11 @@ z-index:1;
 }
 
 @keyframes floatUp{
-
 0%{transform:translateY(0);opacity:0.8;}
 100%{transform:translateY(-120vh);opacity:0;}
-
 }
 
-/* kidnapping reveal */
+/* kidnapping */
 
 .kidnap-box{
 background:#8b0000;
@@ -214,10 +216,8 @@ animation:pop 1s ease;
 }
 
 @keyframes pop{
-
 0%{transform:scale(0.6);opacity:0;}
 100%{transform:scale(1);opacity:1;}
-
 }
 
 .kidnap-title{
@@ -231,6 +231,7 @@ margin-top:20px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -254,14 +255,13 @@ margin-top:20px;
 <div id="pageNO" class="page">
 
 <h1>Wait 😭</h1>
-
 <p>You actually clicked no?</p>
 
 <button onclick="showPage('page1')">Okay fine show me</button>
 
 </div>
 
-<!-- PAGE 2 GIFTS -->
+<!-- GIFTS -->
 
 <div id="page2" class="page">
 
@@ -313,7 +313,7 @@ margin-top:20px;
 
 </div>
 
-<!-- VIDEO PAGE -->
+<!-- VIDEO -->
 
 <div id="page4" class="page">
 
@@ -321,7 +321,7 @@ margin-top:20px;
 
 <div class="video-container">
 
-<video id="songVideo" controls playsinline preload="metadata">
+<video id="songVideo" controls playsinline>
 <source src="video.mp4" type="video/mp4">
 </video>
 
@@ -349,7 +349,7 @@ margin-top:20px;
 
 </div>
 
-<!-- FINAL PAGE -->
+<!-- FINAL -->
 
 <div id="page6" class="page">
 
@@ -396,131 +396,108 @@ setTimeout(()=>heart.remove(),12000);
 
 }
 
-setInterval(createHeart,600);
+setInterval(createHeart,600)
 
 /* runaway NO */
 
-const noBtn=document.getElementById("noBtn");
+const noBtn=document.getElementById("noBtn")
 
 noBtn.addEventListener("mouseover",()=>{
-const x=Math.random()*200-100;
-const y=Math.random()*100-50;
-noBtn.style.transform=`translate(${x}px,${y}px)`;
-});
+const x=Math.random()*200-100
+const y=Math.random()*100-50
+noBtn.style.transform=`translate(${x}px,${y}px)`
+})
 
 noBtn.addEventListener("click",()=>{
-showPage("pageNO");
-});
+showPage("pageNO")
+})
 
-/* YES */
+/* start experience */
 
 function startExperience(){
 
-for(let i=0;i<30;i++){
+const music=document.getElementById("music")
 
-const heart=document.createElement("div");
-heart.innerHTML="❤️";
+music.volume=0.35
+music.play()
 
-heart.style.position="fixed";
-heart.style.left="50%";
-heart.style.top="50%";
-heart.style.fontSize="40px";
-
-const x=(Math.random()-0.5)*900;
-const y=(Math.random()-0.5)*900;
-
-heart.style.transition="1s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.style.transform=`translate(${x}px,${y}px)`;
-heart.style.opacity="0";
-},50);
-
-setTimeout(()=>heart.remove(),1000);
+showPage("page2")
 
 }
 
-const music=document.getElementById("music");
-music.volume=0.35;
-music.play();
-
-setTimeout(()=>{
-showPage("page2");
-},900);
-
-}
-
-/* PAGE SWITCH */
+/* page switch */
 
 function showPage(id){
 
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
+document.getElementById(id).classList.add("active")
 
-if(id==="page5") startTyping();
+if(id==="page5") startTyping()
 
 }
 
-/* VIDEO OPEN */
+/* video */
 
 function openVideo(){
 
-const music=document.getElementById("music");
-music.pause();
+const music=document.getElementById("music")
+const video=document.getElementById("songVideo")
 
-showPage("page4");
+music.pause()
+
+showPage("page4")
+
+video.play()
 
 }
-
-/* VIDEO CLOSE */
 
 function closeVideo(){
 
-const video=document.getElementById("songVideo");
-const music=document.getElementById("music");
+const music=document.getElementById("music"
+)
+const video=document.getElementById("songVideo")
 
-video.pause();
-video.currentTime=0;
+video.pause()
+video.currentTime=0
 
-music.play();
+music.play()
 
-showPage("page2");
+showPage("page2")
 
 }
 
-/* LETTER TYPING */
+/* typing */
 
 const message=`To the funniest, cutest, most smiley guy I know: HAPPY BIRTHDAY WANGU ❤️🥳
 
-Thank you for being the source of so much of my happiness and laughter. I genuinely don't know anyone else who can light up a room the way you do. I love your energy and how you can always make me smile, even on my worst days. Basically, I love you for exactly who you are.
+Thank you for being the source of so much of my happiness and laughter. I genuinely don't know anyone else who can light up a room the way you do.
 
-I hope your birthday is as amazing and bright as you are. And I’m not just wishing you a happy birthday, I'm wishing us a happy future. Here’s to many more birthdays, many more laughs, and many more smiles shared together. I love you more than you know.`;
+I hope your birthday is as amazing and bright as you are. Here's to many more birthdays, many more laughs, and many more smiles together. I love you more than you know.`
 
 function startTyping(){
 
-let i=0;
-const el=document.getElementById("typedText");
-el.innerHTML="";
+let i=0
+const el=document.getElementById("typedText")
+el.innerHTML=""
 
 function type(){
 
 if(i<message.length){
 
-el.innerHTML+=message.charAt(i);
-i++;
-setTimeout(type,22);
+el.innerHTML+=message.charAt(i)
+i++
+
+setTimeout(type,22)
 
 }else{
 
-setTimeout(()=>showPage("page6"),5000);
+setTimeout(()=>showPage("page6"),5000)
 
 }
 
 }
 
-type();
+type()
 
 }
 
